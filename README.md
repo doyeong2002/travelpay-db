@@ -15,6 +15,19 @@ Flask 소스 코드는 현재 이 저장소에 포함하지 않았습니다. 이
 
 MySQL, SQL, Flask
 
+## 데이터 관계
+
+```mermaid
+erDiagram
+    Users ||--o{ Accounts : owns
+    Users ||--o{ Wallets : owns
+    Users ||--o{ TravelCards : owns
+    Wallets ||--o{ Transactions : records
+    TravelCards |o--o{ Transactions : used_for
+```
+
+`Transactions`는 거래가 발생한 외화 지갑을 참조합니다. 카드 결제·출금에는 카드를 연결하고, 환전 예시 거래에는 카드가 없어도 되도록 설계했습니다.
+
 ## 파일
 
 - `schema.sql`: 다섯 테이블과 관계, 제약조건
